@@ -1,0 +1,54 @@
+server:
+  port: 9090
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/CarHaul
+    username: postgres
+    password: 0501726116Rp
+  jpa:
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+  application:
+    name: carhaul-auth
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/carhaul
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+#      client:
+#        registration:
+#          admin-cli:
+#            client-id: admin-cli
+#            client-secret: sRqZHJ46li6CWI9hMGMbUlR51zNIiQ3o
+#            scope:
+#              - openid
+#              - profile
+#              - roles
+#            authorization-grant-type: authorization_code
+#            redirect-uri: http://localhost:8080/login/oauth2/code/admin-cli
+#        provider:
+#          admin-cli:
+#            issuer-uri: http://localhost:8080/realms/carhaul
+
+
+
+jwt:
+  auth:
+    converter:
+      resource-id: authentication
+      principal-attribute: preferred_username
+
+
+#  realm: carhaul
+#  domain: localhost:8080
+#  adminClientId: authentication
+#  adminClientSecret: Ss38JbnrlrZUjYd6jWZjmuq2DNsMDnTG
+#  client: authentication
+#  urls:
+#    auth: https://${keycloak.domain}
+
+
